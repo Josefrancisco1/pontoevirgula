@@ -716,14 +716,15 @@
          <div class="form-header">
             SE PRECISAS DA TUA MARCA <p>A COMUNICAR COMO NENHUMA OUTRA,<p>DESAFIA-NOS:</p> </p>
          </div>
-         <form id="myForm" action="sendEmail.php">
+
+         <form id="myForm" action="./php_email/email_enviar.php" method="POST">
             <div class="input-line">
-                <input  id="name" type="text" placeholder="Nome" class="input-name">
-                <input id="email" value="info@pontoevirgula.co.ao" type="email" placeholder="info@pontoevirgula.co.ao"  class="input-name">
+                <input  id="nome" name="nome" type="text" placeholder="Nome" class="input-name">
+                <input id="email" name="email" value="info@pontoevirgula.co.ao" type="email" placeholder="info@pontoevirgula.co.ao"  class="input-name">
             </div>
-            <input type="text" id="subject" placeholder="Objectivo" class="input-subject">
-            <textarea id ="body" class="input-textarea" placeholder="mensagem"></textarea>
-            <button type="submit" id ="submit" onclick="sendEmail()" value="send">Enviar</button>
+            <input type="text" id="tema" name="tema" placeholder="Objectivo" class="input-subject">
+            <textarea id ="mensagem" name="mensagem" class="input-textarea" placeholder="mensagem"></textarea>
+            <button type="submit" id ="submit">Enviar</button>
          </form>
        
      </div>
