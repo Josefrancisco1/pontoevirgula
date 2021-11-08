@@ -1,4 +1,48 @@
+<?php
 
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+require './lib/vendor/autoload.php';
+
+$mail = new PHPMailer(true);
+
+
+    try 
+    {
+    // $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+        $mail->CharSet = 'UTF-8';
+        $mail->isSMTP();
+        $mail->Host = 'smtp.mailtrap.io';
+        $mail->SMTPAuth = true;
+        $mail->Username = '4c16e9d9822f31';
+        $mail->Password = '97f70ad43a6ca5';
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port = 2525;
+
+        if (isset($_POST['nome'])) {
+            # PEGANDO OS DADOS DOS INPUT PARA EDITAR
+            $nome = addslashes($_POST['nome']);
+            $email = addslashes($_POST['email']);
+            $tema = addslashes($_POST['tema']);
+            $mensagem = addslashes($_POST['mensagem']);
+    
+
+            $mail->setFrom('emmanuel.j.francisco@gmail.com', 'Atendimento');
+            $mail->addAddress($email, $nome);
+            
+            $mail->isHTML(true);
+            $mail->Subject = $tema;
+            $mail->Body = $mensagem;
+            $mail->send();
+        }
+    } catch (Exception $e) {
+        echo "Message erro: {$mail->ErroInfo}";
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,6 +61,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
 </head>
 <body>
+    
     <!--contains all the div-->
     <div id="all">
     <!--mouse  follower-->
@@ -28,12 +73,21 @@
         </div>
     <!--loader-end-->
 
- 
 
-
-
-
-
+<!--Start of Tawk.to Script-->
+<!--
+<script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/61519ea825797d7a8901015b/1fgjd7hr2';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+</script> -->
+<!--End of Tawk.to Script-->
 
     <!--link-screen-->
         <div id="breaker">
@@ -52,7 +106,7 @@
                 <span class="close-second"></span>
             </div>
             <div class="navigation-links">
-                <a href="index.php" data-text="HOME" id="home-link" >HOME</a>
+                <a href="#" data-text="HOME" id="home-link" >HOME</a>
                 <a href="#" data-text="ABOUT" id="about-link" >ABOUT</a>
                 <a href="#" data-text="BLOG" id="blog-link" >BLOG</a>
                 <a href="#" data-text="PORTFOLIO" id="portfolio-link" >PORTFOLIO</a>
@@ -72,127 +126,43 @@
         </div>
         <!--Menubar End-->
           <!--Header-->
-      <div id="header">
+        <div id="header">
             <div id="particles"></div>
-            
-           <!--   Social Media Links end-->
-           <!--  <div class="header-content">
-                     <div class="header-content-box">-->
-             <!--portfolio-->
+              <!--Social Media Links-->
+            <div class="social-media-links">
+                <a href="https://www.instagram.com/pontoevirgula.ao/" target=" _blank"><img src="images/instagram logo.png" class="social-media" alt="instagram-logo"></a><!--Your instagram homepage link inser in place of "#"-->
+                <a href="https://www.facebook.com/pontoevirgula.ao/" target=" _blank"><img src="images/facebook logo.png" class="social-media" alt="facebook-logo"></a>
+                <a href="https://www.linkedin.com/company/ponto-e-virgula-branding-e-comunica%C3%A7%C3%A3o/?viewAsMember=true" target=" _blank"><img src="images/linkedin logo.png" class="social-media" alt="linkedin-logo"></a>
+                <a href="https://twitter.com/pontoevirgula24" target=" _blank"><img src="images/twitter logo.png" class="social-media" alt="twitter-logo" target=" _blank"></a>
+            </div>
+            <!--Social Media Links end-->
+            <div class="header-content">
+                <div class="header-content-box">
+                <div class="firstline"> <center><span class="color">O Artilheiro </span>Mental </center></div>
+                <div class="secondline">
+               Somos fortes em
+               <span class="txt-rotate color" data-period="1200"data-rotate='[ " Desenvolvimento de Marcas.", " Websites e Landing Pages.", " Planejamento de Comunicação."," Posicionamento de Mercado.", " Google Ads.", " Criação de Campanhas."," Propósito e Valores.", " Email Marketing.", " Spots para TV e Rádio."," Identidade Visual.", "Social Media Marketing.", " Ações de Ativação."  ]'></span>
+            <span class="slash">|</span>
+        </div>
+                    <div class="contact">
+                <a href="mailto:info@pontoevirgula.co.ao" target=" _blank"><img src="images/mail.png" alt="email-pic" class="contactpic"></a><!--Your email Id write in place of "#"-->
+                <a href="https://api.whatsapp.com/send?phone=244934326862" target=" _blank"><img src="images/call.png" alt="phone-pic" class="contactpic"></a><!--Your telephone number Id write in place of "#"-->
+                <a href="https://www.facebook.com/o.artilheiromental" target=" _blank"><img src="images/New/1-01.png" alt="phone-pic" class="contactpic"></a><!--Your telephone number Id write in place of "#"-->
+                <a href="https://pontoevirgula.co.ao/shop/" target=" _blank"><img src="images/lojaboa.png" alt="phone-pic" class="contactpic"></a><!--Your telephone number Id write in place of "#"-->
 
-    <div class="color-changer">
-        <div class="color-panel">
-            <img src="images/gear.png" alt="">
-        </div>
-        <div class="color-selector">
-            <div class="heading">Custom Colors</div>
-            <div class="colors">
-                <ul >
-                <li>
-                    <a href="#0" class="color-red " title="color-red"></a>
-                </li>
-                <li>
-                    <a href="#0" class="color-purple" title="color-purple"></a>
-                </li>
-                <li>
-                    <a href="#0" class="color-malt" title="color-malt"></a>
-                </li>
-                <li>
-                    <a href="#0" class="color-green" title="color-green"></a>
-                </li>
-                <li>
-                    <a href="#0" class="color-blue" title="color-blue"></a>
-                </li>
-                <li>
-                    <a href="#0" class="color-orange" title="color-orange"></a>
-                </li>
-                </ul>
-            </div>
-        </div>
-        </div>
-    <div class="portfolio-header"> <span class="color"> Nosso </span> Portfólio
-    <span class ="header-caption"><span class="color"></span></span></div>
-     <div id="portfolio-content">
-         <div class="portfolio portfolio-first">
-             <div class="portfolio-image">
-                <img src="images/New/branding.jpeg" alt="portfolio-first" width="1000px">
-             </div>
-             <div class="portfolio-text">
-                 <h2>Branding</h2>
-                 <p align='justify' style="color:#fff">Cuidamos da sua marca como se fosse a nossa, acompanhando a sua evolução de forma próxima e constante.</p>
-                 <div class="button"><a href="brandingpd.html"  id="branding-link" ><button><span class="index"> Ver Projectos<i class="gg-arrow-right"></i></span></button></a></div>
-             </div>
-         </div>
-         <div class="portfolio portfolio-second">
-            <div class="portfolio-image">
-                <img src="images/New/IMG_7305.jpg" alt="portfolio-second">
-            </div>
-            <div class="portfolio-text">
-                <h2>Marketing Digital</h2>
-                <p align='justify' style="color:#fff">Fazemos gestão de redes sociais com estratégia, conteúdo e tom de voz, claramente definidos e adaptados às diferentes comunidades.</p>
-                <div class="button"><a href="bannerpd.html"  id="marketing-link"><button><span class="index"> Ver Projectos<i class="gg-arrow-right"></i></span></button></a></div>
-            </div>
-        </div>
-     
-        <div class="portfolio portfolio-third">
-            <div class="portfolio-image">
-                <img src="images/New/IMG_7355.png" alt="portfolio-third">
-            </div>
-            <div class="portfolio-text">
-                <h2>Publicidade</h2>
-                <p align='justify' style="color:#fff">Temos o marketing de relacionamento no sangue, mas é a visão 360º que orienta o nosso pensamento e estratégia.</p>
-                <div class="button"><a href="publicidadepd.html"  id="publicidade-link"><button><span class="index"> Ver Projectos<i class="gg-arrow-right"></i></span></button></a></div>
-            </div>
-        </div>
-        <div class="portfolio portfolio-fourth">
-            <div class=" portfolio-image">
-                <img src="images/New/impressora.png" alt="portfolio-fourth">
-            </div>
-            <div class="portfolio-text">
-                <h2>Impressão</h2>
-                <p align='justify' style="color:#fff">Recriamos marcas com passado, reposicionando-as e/ou renovando a imagem gráfica em toda a linha.</p>
-                <div class="button"><a href="impressaopd.html"  id="imprensao-link"><button><span class="index"> Ver Projectos<i class="gg-arrow-right"></i></span></button></a></div>
-            </div>
-        </div>
-        <div class="portfolio portfolio-fourth">
-            <div class=" portfolio-image">
-                <img src="images/New/fotografia.jpeg" alt="portfolio-fourth">
-            </div>
-            <div class="portfolio-text">
-                <h2>Fotografias</h2>
-                <p align='justify' style="color:#fff">Realizamos o serviço de fotografia, a fim de identificar e ressaltar os mínimos detalhes de seu produto. Contamos com grande conhecimento técnico e equipamentos que proporcionam um material bonito e chamativo.</p>
-                <div class="button"><a href="photopd.html"  id="foto-link"><button><span class="index"> Ver Projectos<i class="gg-arrow-right"></i></span></button></a></div>
-            </div>
-            
-        </div>
-        <div class="portfolio portfolio-fourth">
-            <div class=" portfolio-image">
-                <img src="images/New/claquete.gif" alt="portfolio-fourth">
-            </div>
-            <div class="portfolio-text">
-                <h2>Vídeos</h2>
-                <p align='justify' style="color:#fff">Nós acreditamos na produção de vídeo como a principal ferramenta de comunicação da sua empresa. "remove o texto abaixo"</p>
-                <div class="button"><a href="videospd.html"  id="video-link"><button><span class="index"> Ver Projectos<i class="gg-arrow-right"></i></span></button></a></div>
-            </div>
-            
-        </div>
-         </div>
-            <!--copyright-section You Can Remove After Downloading-->
-    <div class="footer">
-        <div class="footer-text">
-            <img src="./images/copyright.png" alt="copyright-img" class="images" height="14px"> Ponto e Vírgula
-        </div>
-      </div>
-<!-- copyright-section-->
+                <i class="fi fi-rr-shopping-bag"></i>
 
-<!--portfolio end
+            </div>  
+               
+
             </div>
-            </div>-->
-         
-          
-        </div>
-         <!--header image-->
+            </div>
+            <!--header image-->
+            <div class="header-image">
+            <img src="images/New/Teste_122334.png" alt="logo">
+            </div>
             <!--header image end-->
+        </div>
            <!--Header End-->
         <!--HomePage End-->
         <!--Main-Section End-->
@@ -228,35 +198,45 @@
                 </div>
             </div>
             </div>
+
             <!--about content-->
             <div id="about-content">
-                <!--teste-->
                 <div class="about-header">
-                    <div class="contact-header">Sobre  
-                      <span class="color">Nós </span>
-                             <div class="contact-header-caption">
-                                 <div class="secondline">
-                                    Somos a  
-                                 <span class="txt-rotate color" data-period="1200"data-rotate='[ " pontuação que faltava na sua marca!.", "  pontuação que faltava na sua marca!.", "  pontuação que faltava na sua marca!."]'></span>
-                                          <span class="slash">|</span>
-                                      </div>
-                                  </div> 
-                              </div>
-                          </div>
-                <!--teste-->
-
-            <div class="about-main">
+                    Sobre <span class="color">Nós</span>
+                </div>
+            <center>
+                <div id="skills">
+                            <div class="contact-header-caption">
+                                <div class="secondline">
+                                    Somos a 
+                                    <span class="txt-rotate color" data-period="1200"data-rotate='[ " pontuação que faltava na sua marca!", " pontuação que faltava na sua marca!", " pontuação que faltava na sua marca!"]'></span>
+                                    <span class="slash">|</span>
+                                </div>
+                            </div>
+                    </div>
+            </center>
+                    
+            <!-- fim--><div class="about-main">
             <div class="about-first-paragraph wow">
             <!--about description-->
-              <!-- <span class="about-first-line">
-                    Somos a 
-                    <span class="color">pontuação</span>
-                    pontuação que faltava na sua marca!
-                </span>-->
-                     <br>
-               <p class="about-second-line" style="text-align: justify;">Nascemos em 2017 com o intuito de preencher um vazio no mercado publicitário Angolano e, com o Marketing de Relacionamento voltado a nossa realidade, o objectivo é transformar a forma das marcas comunicarem em Angola. Portanto, não somos de falinhas-mansas. Dizemos o que nos vai na cabeça, conquanto seja relevante para atingir os objectivos das marcas com que trabalhamos. Sabemos comportar-nos em qualquer realidade, seja a tradicional ou a digital. Falamos qualquer língua ou linguajar e se necessário for, consultamos parceiros, dicionários ou outros recursos de apoio. Perfeitos não somos, Perfeccionistas sim. É por estas e por outras que, quando nos perguntam o que é a Ponto & Vírgula, simplificamos e dizemos – É a <strong>pontuação que faltava na sua marca</strong>. Comunicamos marcas de diversas maneiras, mas no fim das contas o que nos importa é sempre o mesmo, gerar impacto e resultados.</p>
+                     <br><br>
+               <span class="about-second-line" style="text-align: justify;">Nascemos em 2017 com o intuito de
+                 preencher um vazio no mercado publicitário Angolano e,
+                  com o Marketing de Relacionamento voltado a nossa realidade,
+                   o objectivo é transformar a forma das marcas comunicarem em Angola.
+                    Portanto, não somos de falinhas-mansas. Dizemos o que nos vai na cabeça,
+                     conquanto seja relevante para atingir os objectivos das marcas com que
+                      trabalhamos. Sabemos comportar-nos em qualquer realidade, seja a
+                       tradicional ou a digital. Falamos qualquer língua ou linguajar
+                        e se necessário for consultamos parceiros, dicionários ou outros
+                         recursos de apoio. Perfeitos não somos, Perfeccionistas sim.
+                          É por estas e por outras que, quando nos perguntam o que é
+                           a Ponto & Vírgula, simplificamos e dizemos – É a <strong>
+                               pontuação que faltava na sua marca</strong>. Comunicamos
+                                marcas de diversas maneiras, mas no fim das contas o
+                                 que nos importa é sempre o mesmo, gerar impacto e resultados.</span>
                <div class="cv">
-                <a href="https://online.fliphtml5.com/hrwoe/ukgl/" target="_blank" download="APRESENTAÇÃO DA PONTO & VÍGULA"><span class="colors about-second-line" style="color:#C70039;font-family: s Gill Sans Extrabold, sans-serif">
+                <a href="https://online.fliphtml5.com/hrwoe/ukgl/" target="_blank"  download="APRESENTAÇÃO DA PONTO & VÍGULA"><span class="colors about-second-line" style="color:#C70039;font-family: s Gill Sans Extrabold, sans-serif">
                     <style type="text/css">
                         h2.ola{
                             text-decoration:none;
@@ -269,15 +249,15 @@
                             }
                         </style>
                         <h2 class="ola">Ainda sobre nós</h2></span></a>
+                
             </div>
             </div>
             <!--about picture-->
             <div class="about-img">
                 <img src="images/New/Sobre_Nós_Teste.jpg" alt="Your Image">
             </div>
+            </div><!-- fim-->
             </div>
-            </div>
-
             <!--services start-->
             <div id="services">
                 <div class="color-changer">
@@ -319,7 +299,7 @@
             <div class="services-content">
                 <div class="service-one service wow">
                     <div class="service-img">
-                   <a href="brandingpd.html"><img src="images/bulb.png" alt="service-one"></a> 
+                   <a href="brandingpd.html" ><img src="images/bulb.png" alt="service-one"></a> 
                     </div>
                     <div class="service-description">
                      <h2>BRANDING</h2>
@@ -346,7 +326,7 @@
              </div>
              <div class="service-three service wow">
                  <div class="service-img">
-                    <a href="impressaopd.html" ><img src="images/New/2-02.png" alt="service-three"></a>
+                    <a href="impressaopd.html"><img src="images/New/2-02.png" alt="service-three"></a>
                  </div>
                  <div class="service-description">
                      <h2>Impressão</h2>
@@ -368,7 +348,7 @@
                  </div>
                  <div class="service-description">
                      <h2>Vídeos</h2>
-                     <p>Videos Institucionais, corporativo, videoclipes, animações 2D, 3D e muito mais.
+                     <p>Videos Institucionais, publicitários, videoclipes, animações 2D, 3D e muito mais.
                   
                            </p>
                  </div>
@@ -379,10 +359,11 @@
  <!--services content end-->
             <!--services end-->
             <div id="skills">
- 
                 <div class="contact-header">
                     <div class="contact-header">Somos  <span class="color"> Fortes</span>
                         <div class="contact-header-caption">
+
+                            
                             <div class="secondline">
                                 Estamos em Constante
                                 <span class="txt-rotate color" data-period="1200"data-rotate='[ "Evolução.", " Evolução.", " Evolução"]'></span>
@@ -391,68 +372,84 @@
                         </div> 
                     </div>
                 </div>
-
                 <div class="skills-content " style="text-align: center;">
                     <div class="skill-html skill">
-                        <div class="skill-text">
-                    <div class="html">
-                        Desenvolvimento de Marcas
-                    </div>
+                            <div class="skill-text">
+                                <div class="html">
+                                    Desenvolvimento de Marcas
+                                </div>
+                            </div> <br>
+                        <div class="html-prog wow prog">
+                            <div class="html-progress wow">
+                                100%
+                            </div>
                         </div>
-                    <div class="html-prog wow prog">
-                 <div class="html-progress wow">100%</div>
-                    </div>
                     </div>
                     <div class="skill-html skill">
                         <div class="skill-text">
-                    <div class="html">
-                        Planejamento de Comunicação
-                    </div>
+                            <div class="html">
+                                Criação de Campanhas
+                            </div>
+                        </div><br>
+                        <div class="html-prog wow prog">
+                            <div class="adobe-progress wow">
+                                83%
+                            </div>
                         </div>
-                    <div class="html-prog wow prog">
-                 <div class="js-progress wow">90%</div>
-                    </div>
                     </div>
                     <div class="skill-html skill">
                         <div class="skill-text">
-                    <div class="html">
-                        Criação de Campanhas
-                    </div>
+                            <div class="html">
+                                Planejamento de Comunicação
+                            </div>
                         </div>
-                    <div class="html-prog wow prog">
-                 <div class="adobe-progress wow">83%</div>
+                        <br>
+                        <div class="html-prog wow prog">
+                            <div class="adobe-progress wow">
+                                90%
+                            </div>
+                        </div>
                     </div>
-                    </div>
+
                     <div class="skill-html skill">
                         <div class="skill-text">
-                    <div class="html">
-                        Identidade Visual
-                    </div>
+                            <div class="html">
+                                Identidade Visual
+                            </div>
+                        </div><br>
+                        <div class="html-prog wow prog">
+                            <div class="php-progress wow">
+                                87%
+                            </div>
                         </div>
-                    <div class="html-prog wow prog">
-                 <div class="php-progress wow">87%</div>
                     </div>
-                    </div>
+
                     <div class="skill-html skill">
                         <div class="skill-text">
-                    <div class="html">
-                        Spots para TV e Rádio
-                    </div>
+                            <div class="html">
+                                Spots para TV e Rádio
+                            </div>
+                        </div><br>
+                        <div class="html-prog wow prog">
+                            <div class="jquery-progress wow">
+                                94%
+                            </div>
                         </div>
-                    <div class="html-prog wow prog">
-                 <div class="jquery-progress wow">94%</div>
                     </div>
-                    </div>
+
                     <div class="skill-html skill">
                         <div class="skill-text">
-                    <div class="html">
-                       Social Media Marketing
-                    </div>
+                            <div class="html">
+                                Social Media Marketing
+                            </div>
+                        </div><br>
+                        <div class="html-prog wow prog">
+                            <div class="seo-progress wow">
+                                84%
+                            </div>
                         </div>
-                    <div class="html-prog wow prog">
-                 <div class="seo-progress wow">84%</div>
                     </div>
-                    </div>
+
                 </div>
             </div>
        <!--copyright-section You Can Remove After Downloading-->
@@ -495,7 +492,7 @@
                 </ul>
             </div>
         </div>
-        </div>
+    </div>
     <div class="portfolio-header"> <span class="color"> Nosso </span> Portfólio
     <span class ="header-caption"><span class="color"></span></span></div>
      <div id="portfolio-content">
@@ -505,7 +502,7 @@
              </div>
              <div class="portfolio-text">
                  <h2>Branding</h2>
-                 <p align='justify'>Cuidamos da sua marca como se fosse a nossa, acompanhando a sua evolução de forma próxima e constante.</p>
+                 <p >Cuidamos da sua marca como se fosse a nossa, acompanhando a sua evolução de forma próxima e constante.</p>
                  <div class="button"><a href="brandingpd.html"  id="branding-link" ><button><span class="index"> Ver Projectos<i class="gg-arrow-right"></i></span></button></a></div>
              </div>
          </div>
@@ -515,7 +512,7 @@
             </div>
             <div class="portfolio-text">
                 <h2>Marketing Digital</h2>
-                <p align='justify'>Fazemos gestão de redes sociais com estratégia, conteúdo e tom de voz, claramente definidos e adaptados às diferentes comunidades.</p>
+                <p>Fazemos gestão de redes sociais com estratégia, conteúdo e tom de voz, claramente definidos e adaptados às diferentes comunidades.</p>
                 <div class="button"><a href="bannerpd.html"  id="marketing-link"><button><span class="index"> Ver Projectos<i class="gg-arrow-right"></i></span></button></a></div>
             </div>
         </div>
@@ -526,7 +523,7 @@
             </div>
             <div class="portfolio-text">
                 <h2>Publicidade</h2>
-                <p align='justify'>Temos o marketing de relacionamento no sangue, mas é a visão 360º que orienta o nosso pensamento e estratégia.</p>
+                <p>Temos o marketing de relacionamento no sangue, mas é a visão 360º que orienta o nosso pensamento e estratégia.</p>
                 <div class="button"><a href="publicidadepd.html"  id="publicidade-link"><button><span class="index"> Ver Projectos<i class="gg-arrow-right"></i></span></button></a></div>
             </div>
         </div>
@@ -536,7 +533,7 @@
             </div>
             <div class="portfolio-text">
                 <h2>Impressão</h2>
-                <p align='justify'>Recriamos marcas com passado, reposicionando-as e/ou renovando a imagem gráfica em toda a linha.</p>
+                <p>Recriamos marcas com passado, reposicionando-as e/ou renovando a imagem gráfica em toda a linha.</p>
                 <div class="button"><a href="impressaopd.html"  id="imprensao-link"><button><span class="index"> Ver Projectos<i class="gg-arrow-right"></i></span></button></a></div>
             </div>
         </div>
@@ -546,7 +543,7 @@
             </div>
             <div class="portfolio-text">
                 <h2>Fotografias</h2>
-                <p align='justify'>Realizamos o serviço de fotografia, a fim de identificar e ressaltar os mínimos detalhes de seu produto. Contamos com grande conhecimento técnico e equipamentos que proporcionam um material bonito e chamativo.</p>
+                <p>Realizamos o serviço de fotografia, a fim de identificar e ressaltar os mínimos detalhes de seu produto. Contamos com grande conhecimento técnico e equipamentos que proporcionam um material bonito e chamativo.</p>
                 <div class="button"><a href="photopd.html"  id="foto-link"><button><span class="index"> Ver Projectos<i class="gg-arrow-right"></i></span></button></a></div>
             </div>
             
@@ -557,10 +554,9 @@
             </div>
             <div class="portfolio-text">
                 <h2>Vídeos</h2>
-                <p align='justify'>Nós acreditamos na produção de vídeo como a principal ferramenta de comunicação da sua empresa.</p>
+                <p>Nós acreditamos na produção de vídeo como a principal ferramenta de comunicação da sua empresa.</p>
                 <div class="button"><a href="videospd.html"  id="video-link"><button><span class="index"> Ver Projectos<i class="gg-arrow-right"></i></span></button></a></div>
-            </div>
-            
+            </div> 
         </div>
          </div>
             <!--copyright-section You Can Remove After Downloading-->
@@ -606,9 +602,8 @@
         </div>
         </div>
 
-        
-        <div class="contact-header">
-            <div class="contact-header">Blog  <span class="color"> </span>
+  <div class="contact-header">
+            <div class="contact-header">Blog  <span class="color"></span>
                 <div class="contact-header-caption">
                     <div class="secondline">
                         Posts de 
@@ -619,11 +614,9 @@
             </div>
         </div>
 
-
-    
     <div class="blog-content">
          <div class="blogs">
-             <a href="Blog/blog1.html" >
+             <a href="Blog/blog1.html">
              <div class="img">
                 <img src="images/New/JP.jpeg" alt="blog-one">
                 <div class="blog-date">19 Junho,21</div>
@@ -645,7 +638,7 @@
          </div>  
         </br>    
          <div class="blogs">
-            <a href="Blog/blog2.html" >
+            <a href="Blog/blog2.html">
             <div class="img">
                 <img src="images/New/blog2.jpg" alt="blog-two">
                 <div class="blog-date">26 Junho,21</div>
@@ -668,7 +661,7 @@
             </div></a>
         </div>      
         <div class="blogs">
-            <a href="Blog/blog3.html" >
+            <a href="Blog/blog3.html">
             <div class="img">
                 <img src="images/New/blog3.jpg" alt="blog-three">
                 <div class="blog-date">27 junho,21</div>
@@ -679,7 +672,7 @@
             </div></a>
         </div>
         <div class="blogs">
-            <a href="Blog/blog4.html" >
+            <a href="Blog/blog4.html">
             <div class="img">
                 <img src="images/New/blog4.jpg" alt="blog-four">
                 <div class="blog-date">27 Junho,21</div>
@@ -757,21 +750,32 @@
     </div>
     </div>
  <div class="contact-header">Contacte <span class="color"> Nos</span>
-<div class="contact-header-caption"> <span class="color"> Entre</span> em Contacto.</div></div>
+    <center>
+        <div id="skills">
+                    <div class="contact-header-caption">
+                        <div class="secondline">
+                            Entre 
+                            <span class="txt-rotate color" data-period="1200"data-rotate='[ " em Contacto.", " em Contacto."]'></span>
+                            <span class="slash">|</span>
+                        </div>
+                    </div>
+            </div>
+    </center>
 <div class="contact-content">
     <!--Contact form-->
      <div class="contact-form">
          <div class="form-header">
             SE PRECISAS DA TUA MARCA <p>A COMUNICAR COMO NENHUMA OUTRA,<p>DESAFIA-NOS:</p> </p>
          </div>
-         <form id="myForm" action="sendEmail.php">
+
+         <form id="submit" action="" method="POST">
             <div class="input-line">
-                <input  id="name" type="text" placeholder="Nome" class="input-name">
-                <input id="email" type="email" placeholder="info@pontoevirgula.co.ao"  class="input-name">
+                <input required id="nome" name="nome" type="text" placeholder="Nome" class="input-name">
+                <input id="email"  name="email"  type="email" placeholder="Digita o seu E-mail ou telefone"  class="input-name">
             </div>
-            <input type="text" id="subject" placeholder="Objectivo" class="input-subject">
-            <textarea id ="body" class="input-textarea" placeholder="mensagem"></textarea>
-            <button type="button" id ="submit" onclick="sendEmail()" value="send">Enviar</button>
+            <input required type="text" id="tema" name="tema" placeholder="Objectivo" class="input-subject">
+            <textarea required id ="mensagem" name="mensagem" class="input-textarea" placeholder="mensagem"></textarea>
+            <button type="submit" name="enviar" id ="submit">Enviar</button>
          </form>
        
      </div>
@@ -835,11 +839,11 @@
 <!--particles script-->
 
 
+<!--particles script-->
+    <script>
+          particlesJS("particles", {"particles":{"number":{"value":120,"density":{"enable":true,"value_area":800}},"color":{"value":"#ffffff"},"shape":{"type":"circle","stroke":{"width":0,"color":"#000000"},"polygon":{"nb_sides":5},"image":{"src":"img/github.svg","width":100,"height":100}},"opacity":{"value":0.5,"random":false,"anim":{"enable":true,"speed":1,"opacity_min":0.1,"sync":false}},"size":{"value":3,"random":true,"anim":{"enable":true,"speed":0,"size_min":0.1,"sync":false}},"line_linked":{"enable":false,"distance":0,"color":"#ffffff","opacity":0.24463576890600452,"width":1.2626362266116362},"move":{"enable":true,"speed":3,"direction":"none","random":false,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":false,"rotateX":600,"rotateY":1200}}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":false,"mode":"grab"},"onclick":{"enable":true,"mode":"push"},"resize":true},"modes":{"grab":{"distance":400,"line_linked":{"opacity":1}},"bubble":{"distance":400,"size":40,"duration":2,"opacity":8,"speed":3},"repulse":{"distance":200,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true});
+    </script>
 
-<!---->
-<script>
-particlesJS("particles", {"particles":{"number":{"value":120,"density":{"enable":true,"value_area":800}},"color":{"value":"#ffffff"},"shape":{"type":"circle","stroke":{"width":0,"color":"#000000"},"polygon":{"nb_sides":5},"image":{"src":"img/github.svg","width":100,"height":100}},"opacity":{"value":0.5,"random":false,"anim":{"enable":true,"speed":1,"opacity_min":0.1,"sync":false}},"size":{"value":3,"random":true,"anim":{"enable":true,"speed":0,"size_min":0.1,"sync":false}},"line_linked":{"enable":false,"distance":0,"color":"#ffffff","opacity":0.24463576890600452,"width":1.2626362266116362},"move":{"enable":true,"speed":3,"direction":"none","random":false,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":false,"rotateX":600,"rotateY":1200}}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":false,"mode":"grab"},"onclick":{"enable":true,"mode":"push"},"resize":true},"modes":{"grab":{"distance":400,"line_linked":{"opacity":1}},"bubble":{"distance":400,"size":40,"duration":2,"opacity":8,"speed":3},"repulse":{"distance":200,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true});
-</script>
 <script type="text/javascript">
     function sendEmail() {
         var name = $("#name");
@@ -879,8 +883,11 @@ particlesJS("particles", {"particles":{"number":{"value":120,"density":{"enable"
     }
 </script>
 
+<!--chatBot da jivo-->
 
+<script src="//code.tidio.co/fthr6lx9nupjznzsafrz9hkkudwag3if.js" async></script>
 
+<!--chatBot da jivo-->
 
 </body>
 </html>
